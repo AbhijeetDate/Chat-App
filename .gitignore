@@ -1,0 +1,18 @@
+# Maven
+Project1/target/
+
+# Java / IDE
+.idea/
+.vscode/
+*.iml
+
+# Environment / secrets
+.env
+.env.*
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

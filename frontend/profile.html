@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Harbor — Profile</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="app-shell">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="brand">
+        <div class="brand-mark">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8H4l2.5-3.2C5 15.4 4 13.8 4 12Z" stroke="#F7F4EE" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </div>
+        <span class="brand-name">Harbor</span>
+      </div>
+      <button class="icon-btn" id="logoutBtn" title="Log out">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="#F7F4EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="nav-btn" href="chats.html">Chats</a>
+      <a class="nav-btn" href="connections.html">Connections<span class="nav-badge hidden" id="pendingBadge">0</span></a>
+      <a class="nav-btn" href="search.html">Find people</a>
+      <a class="nav-btn active" href="profile.html">Profile</a>
+    </nav>
+  </aside>
+
+  <main class="chat-area content-main">
+    <div class="content-header">
+      <h1>Your profile</h1>
+      <p>Update your photo and manage your password.</p>
+    </div>
+
+    <div class="profile-page-card">
+      <div class="profile-picture-row">
+        <div class="avatar" id="profileAvatar" style="width:74px; height:74px; font-size:1.5rem;">?</div>
+        <div class="profile-actions">
+          <label class="btn btn-accent btn-sm" style="display:inline-block;">
+            Change photo
+            <input type="file" id="profilePicInput" accept="image/*" class="hidden" />
+          </label>
+          <button class="btn btn-ghost btn-sm" id="removePicBtn">Remove</button>
+        </div>
+      </div>
+      <p style="font-weight:600; margin:0 0 2px; color:var(--ink-text);" id="profileName">—</p>
+      <p style="color:var(--muted); font-size:0.86rem; margin:0 0 26px;" id="profileEmail">—</p>
+
+      <hr class="divider" />
+
+      <p style="font-weight:600; font-size:0.9rem; margin-bottom:14px; color:var(--ink-text);">Change password</p>
+      <form id="changePasswordForm">
+        <div class="field">
+          <label for="cpOld">Current password</label>
+          <input type="password" id="cpOld" required />
+        </div>
+        <div class="field">
+          <label for="cpNew">New password</label>
+          <input type="password" id="cpNew" required />
+        </div>
+        <div class="field">
+          <label for="cpConfirm">Confirm new password</label>
+          <input type="password" id="cpConfirm" required />
+        </div>
+        <button type="submit" class="btn btn-primary btn-sm">Update password</button>
+      </form>
+    </div>
+  </main>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/shared.js"></script>
+<script src="js/profile.js"></script>
+</body>
+</html>

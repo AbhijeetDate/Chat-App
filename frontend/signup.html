@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Harbor — Sign up</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="auth-screen">
+
+  <div class="auth-hero">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8H4l2.5-3.2C5 15.4 4 13.8 4 12Z" stroke="#F7F4EE" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      </div>
+      <span class="brand-name">Harbor</span>
+    </div>
+    <p class="auth-hero-quote">Where every conversation <em>finds safe harbor</em> — quick to reach, easy to keep.</p>
+    <p class="auth-hero-foot">Built for people who'd rather talk than type twice.</p>
+  </div>
+
+  <div class="auth-panel">
+    <div class="auth-card">
+      <div class="brand">
+        <div class="brand-mark">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8H4l2.5-3.2C5 15.4 4 13.8 4 12Z" stroke="#F7F4EE" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </div>
+        <span class="brand-name">Harbor</span>
+      </div>
+
+      <h2 style="font-family:var(--font-display); font-style:italic; font-weight:600; font-size:1.3rem; margin:0 0 22px; color:var(--ink);">Create your account</h2>
+
+      <div id="statusMsg" class="status-msg"></div>
+
+      <form id="signupForm">
+        <div class="field">
+          <label for="suName">Full name</label>
+          <input type="text" id="suName" required placeholder="Jordan Ellis" />
+        </div>
+        <div class="field">
+          <label for="suEmail">Email</label>
+          <input type="email" id="suEmail" required placeholder="you@example.com" />
+        </div>
+        <div class="field">
+          <label for="suPhone">Phone</label>
+          <input type="tel" id="suPhone" required placeholder="+1 555 000 0000" />
+        </div>
+        <div class="field">
+          <label for="suPassword">Password</label>
+          <input type="password" id="suPassword" required placeholder="••••••••" />
+        </div>
+        <button type="submit" class="btn btn-primary">Create account</button>
+        <p class="form-note">Already have an account? <a href="index.html" style="color:var(--teal); font-weight:600; text-decoration:none;">Log in</a></p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/signup.js"></script>
+</body>
+</html>

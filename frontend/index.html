@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Harbor — Log in</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="auth-screen">
+
+  <div class="auth-hero">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8H4l2.5-3.2C5 15.4 4 13.8 4 12Z" stroke="#F7F4EE" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      </div>
+      <span class="brand-name">Harbor</span>
+    </div>
+    <p class="auth-hero-quote">Where every conversation <em>finds safe harbor</em> — quick to reach, easy to keep.</p>
+    <p class="auth-hero-foot">Built for people who'd rather talk than type twice.</p>
+  </div>
+
+  <div class="auth-panel">
+    <div class="auth-card">
+      <div class="brand">
+        <div class="brand-mark">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8H4l2.5-3.2C5 15.4 4 13.8 4 12Z" stroke="#F7F4EE" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </div>
+        <span class="brand-name">Harbor</span>
+      </div>
+
+      <h2 style="font-family:var(--font-display); font-style:italic; font-weight:600; font-size:1.3rem; margin:0 0 22px; color:var(--ink);">Log in to your account</h2>
+
+      <div id="statusMsg" class="status-msg"></div>
+
+      <form id="loginForm">
+        <div class="field">
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" required placeholder="you@example.com" />
+        </div>
+        <div class="field">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" required placeholder="••••••••" />
+        </div>
+        <button type="submit" class="btn btn-primary">Log in</button>
+        <p class="form-note">
+          <a href="forgot-password.html" style="color:var(--teal); font-weight:600; text-decoration:none;">Forgot password?</a>
+        </p>
+        <p class="form-note">New here? <a href="signup.html" style="color:var(--teal); font-weight:600; text-decoration:none;">Create an account</a></p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>

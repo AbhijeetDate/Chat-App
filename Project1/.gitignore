@@ -1,0 +1,68 @@
+HELP.md
+
+### Maven ###
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### Spring Tool Suite (STS) ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+### Eclipse ###
+.metadata/
+
+### Logs ###
+*.log
+
+### OS Generated Files ###
+.DS_Store
+Thumbs.db
+
+### Environment Files ###
+.env
+
+### Packaged Files ###
+*.jar
+*.war
+*.ear
+
+### Temporary Files ###
+*.tmp
+*.swp
+*.swo
+
+### Mac ###
+.AppleDouble
+.LSOverride
+
+### Linux ###
+*~
+
+### Java ###
+*.class
