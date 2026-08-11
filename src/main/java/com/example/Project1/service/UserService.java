@@ -6,17 +6,20 @@ import java.util.Optional;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.example.Project1.dto.ChangePasswordRequest;
 import com.example.Project1.dto.ForgotPasswordRequest;
 import com.example.Project1.dto.LoginRequest;
+import com.example.Project1.dto.LoginResponse;
 import com.example.Project1.dto.ResetPasswordRequest;
-import com.example.Project1.dto.VerifyOTPRequest;
-import com.example.Project1.dto.signUpRequest;
 import com.example.Project1.dto.SearchUserRequest;
 import com.example.Project1.dto.SearchUserResponse;
+import com.example.Project1.dto.VerifyOTPRequest;
+import com.example.Project1.dto.signUpRequest;
 import com.example.Project1.entity.User;
+import com.example.Project1.repository.ConnectionRepository;
 import com.example.Project1.repository.UserRepository;
 
 @Service
@@ -26,6 +29,11 @@ public class UserService {
     private UserRepository userRepository;
     @Autowired
     private EmailService emailService;
+    @Autowired
+    private ConnectionRepository connectionRepository;
+
+    @Value("${app.default-profile-url}")
+    private String defaultProfileUrl;
 
     private Map<String, String> otpStorage = new HashMap<>();
     private Map<String, Boolean> verifiedUser = new HashMap<>();
@@ -52,6 +60,7 @@ public class UserService {
         user.setEmail(request.getEmail());
         user.setPhone(request.getPhone());
         user.setPassword(request.getPassword());
+        user.setProfilePictureUrl(defaultProfileUrl);
 
         // Save in database
         userRepository.save(user);
@@ -59,19 +68,42 @@ public class UserService {
         return "Signup successful.";
     }
 
-    public String login(LoginRequest request)
+    public LoginResponse login(LoginRequest request)
     {
-        Optional<User> user = userRepository.findByEmail(request.getEmail());
-        if(user.isEmpty())
+        Optional<User> optionalUser =
+            userRepository.findByEmail(request.getEmail());
+
+        if(optionalUser.isEmpty())
         {
-            return "User not found.";
+            return new LoginResponse(
+                "Invalid credentials.",
+                null,
+                null,
+                null,
+                null
+            );
         }
-        
-        if(user.get().getPassword().equals(request.getPassword()))
+
+        User user = optionalUser.get();
+
+        if(!user.getPassword().equals(request.getPassword()))
         {
-            return "Login successful.";   
+            return new LoginResponse(
+                "Invalid credentials.",
+                null,
+                null,
+                null,
+                null
+            );
         }
-        return "Invalid crediantials.";
+
+        return new LoginResponse(
+            "Login successful.",
+            user.getId(),
+            user.getFullName(),
+            user.getEmail(),
+            user.getProfilePictureUrl()
+        );
     }
 
     public String changePassword(ChangePasswordRequest request)
@@ -185,7 +217,10 @@ public class UserService {
     public SearchUserResponse searchUser(SearchUserRequest request)
     {
         String keyword = request.getKeyword();
+        Integer currentUserId = request.getCurrentUserId();
+
         Optional<User> user;
+
         if(keyword.contains("@"))
         {
             user = userRepository.findByEmail(keyword);
@@ -201,11 +236,28 @@ public class UserService {
         }
 
         User foundUser = user.get();
+        boolean connectedStatus =
+            connectionRepository
+                    .findByUserId1AndUserId2(
+                            currentUserId,
+                            foundUser.getId()
+                    )
+                    .isPresent()
+            ||
+            connectionRepository
+                    .findByUserId2AndUserId1(
+                            currentUserId,
+                            foundUser.getId()
+                    )
+                    .isPresent();
 
         return new SearchUserResponse(
+            foundUser.getId(),
+            foundUser.getFullName(),
             foundUser.getEmail(),
             foundUser.getPhone(),
-            foundUser.getFullName()
+            foundUser.getProfilePictureUrl(),
+            connectedStatus
         );
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.Project1.dto.AcceptConnectionRequest;
 import com.example.Project1.dto.ConnectedUsersResponse;
+import com.example.Project1.dto.PendingConnectionResponse;
 import com.example.Project1.dto.SendConnectionRequest;
 import com.example.Project1.entity.ConnectionRequest;
 import com.example.Project1.entity.Connections;
@@ -47,9 +48,48 @@ public class ConnectionService {
         return "Connection request sent.";
     }
 
-    public List<ConnectionRequest> getPendingRequests(Integer receiverId)
+    // public List<ConnectionRequest> getPendingRequests(Integer receiverId)
+    // {
+    //     return connectionRequestRepository.findByReceiverIdAndStatus(receiverId, "PENDING");
+    // }
+
+    public List<PendingConnectionResponse> getPendingRequests(Integer receiverId)
     {
-        return connectionRequestRepository.findByReceiverIdAndStatus(receiverId, "PENDING");
+
+        List<ConnectionRequest> requests =
+            connectionRequestRepository.findByReceiverIdAndStatus(
+                    receiverId,
+                    "PENDING"
+            );
+
+        return requests.stream()
+                .map(request -> {
+
+                    User sender = userRepository
+                        .findById(request.getSenderId())
+                        .orElse(null);
+
+                    String senderName =
+                        sender != null
+                                ? sender.getFullName()
+                                : "Unknown User";
+
+                    String profilePictureUrl =
+                        sender != null
+                                ? sender.getProfilePictureUrl()
+                                : null;
+
+                    return new PendingConnectionResponse(
+                        request.getId(),
+                        request.getSenderId(),
+                        senderName,
+                        profilePictureUrl,
+                        request.getReceiverId(),
+                        request.getStatus(),
+                        request.getCreatedAt()
+                    );
+                })
+                .toList();
     }
 
     public String acceptRequest(AcceptConnectionRequest request) 
@@ -85,7 +125,7 @@ public class ConnectionService {
 
             User user = userRepository.findById(connection.getUserId2()).get();
 
-            result.add(new ConnectedUsersResponse(user.getId(),user.getFullName(),user.getEmail(),user.getPhone()));
+            result.add(new ConnectedUsersResponse(user.getId(), user.getFullName(), user.getEmail(), user.getPhone(), user.getProfilePictureUrl()));
         }
 
         for(Connections connection : list2) 
@@ -93,7 +133,7 @@ public class ConnectionService {
 
             User user = userRepository.findById(connection.getUserId1()).get();
 
-            result.add(new ConnectedUsersResponse(user.getId(),user.getFullName(),user.getEmail(),user.getPhone()));
+            result.add(new ConnectedUsersResponse(user.getId(), user.getFullName(), user.getEmail(), user.getPhone(), user.getProfilePictureUrl()));
         }
         return result;
     }

@@ -27,6 +27,9 @@ public class User{
     @Column(nullable = false)
     private String password;
 
+    @Column(name = "profile_picture_url")
+    private String profilePictureUrl;
+
 
     public User() {}
 
@@ -75,5 +78,15 @@ public class User{
     {
         this.password = password;
     }
-    
+
+    // Profile picture URL
+    public String getProfilePictureUrl()
+    {
+        return this.profilePictureUrl;
+    }
+    public void setProfilePictureUrl(String profilePictureUrl)
+    {
+        this.profilePictureUrl = profilePictureUrl;
+    }
+
 }

@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Project1.dto.AcceptConnectionRequest;
 import com.example.Project1.dto.ConnectedUsersResponse;
+import com.example.Project1.dto.PendingConnectionResponse   ;
 import com.example.Project1.dto.SendConnectionRequest;
-import com.example.Project1.entity.ConnectionRequest;
 import com.example.Project1.service.ConnectionService;
 
 
@@ -34,7 +34,7 @@ public class ConnectionRequestController {
     }
 
     @GetMapping("/connections/pending/{receiverId}")
-    public List<ConnectionRequest> getPendingRequests(@PathVariable Integer receiverId)
+    public List<PendingConnectionResponse> getPendingRequests(@PathVariable Integer receiverId)
     {
         return connectionService.getPendingRequests(receiverId);
     }

@@ -2,33 +2,70 @@ package com.example.Project1.dto;
 
 public class SearchUserResponse {
 
+    private Integer id;
+    private String fullName;
     private String email;
     private String phone;
-    private String fullName;
+    private String profilePictureUrl;
+    private boolean connectedStatus;
 
+    // Default constructor
     public SearchUserResponse() {
     }
 
-    public SearchUserResponse(String email, String phone, String fullName) {
+    // Parameterized constructor
+    public SearchUserResponse(
+            Integer id,
+            String fullName,
+            String email,
+            String phone,
+            String profilePictureUrl,
+            boolean connectedStatus) {
+
+        this.id = id;
+        this.fullName = fullName;
         this.email = email;
         this.phone = phone;
-        this.fullName = fullName;
+        this.profilePictureUrl = profilePictureUrl;
+        this.connectedStatus = connectedStatus;
     }
 
-    //Getters
-    public String getEmail() {
-        return this.email;
-    }
+    // Getters
 
-    public String getPhone() {
-        return this.phone;
+    public Integer getId() {
+        return id;
     }
 
     public String getFullName() {
-        return this.fullName;
+        return fullName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getProfilePictureUrl() {
+        return profilePictureUrl;
+    }
+
+    public Boolean getConnectedStatus() {
+        return connectedStatus;
     }
 
     // Setters
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -37,7 +74,11 @@ public class SearchUserResponse {
         this.phone = phone;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setProfilePictureUrl(String profilePictureUrl) {
+        this.profilePictureUrl = profilePictureUrl;
+    }
+
+    public void setConnectedStatus(boolean connectedStatus) {
+        this.connectedStatus = connectedStatus;
     }
 }

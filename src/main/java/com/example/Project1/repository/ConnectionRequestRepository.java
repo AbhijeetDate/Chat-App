@@ -7,9 +7,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.Project1.entity.ConnectionRequest;
 
-public interface ConnectionRequestRepository extends JpaRepository<ConnectionRequest, Integer>{
-    
-    List<ConnectionRequest> findByReceiverIdAndStatus(Integer receiverId, String status);
+public interface ConnectionRequestRepository extends JpaRepository<ConnectionRequest, Integer> {
 
-    Optional<ConnectionRequest> findBySenderIdAndReceiverId(Integer senderId, Integer receiverId);
+    List<ConnectionRequest> findByReceiverIdAndStatus(
+        Integer receiverId,
+        String status
+    );
+
+    Optional<ConnectionRequest> findBySenderIdAndReceiverId(
+        Integer senderId,
+        Integer receiverId
+    );
+
 }

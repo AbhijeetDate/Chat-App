@@ -1,36 +1,39 @@
 package com.example.Project1.dto;
 
-public class ConnectedUsersResponse {
+public class LoginResponse {
 
-    private Integer id;
+    private String message;
+    private Integer userId;
     private String fullName;
     private String email;
-    private String phone;
     private String profilePictureUrl;
 
     // Default constructor
-    public ConnectedUsersResponse() {
+    public LoginResponse() {
     }
 
     // Parameterized constructor
-    public ConnectedUsersResponse(
-            Integer id,
+    public LoginResponse(
+            String message,
+            Integer userId,
             String fullName,
             String email,
-            String phone,
             String profilePictureUrl) {
 
-        this.id = id;
+        this.message = message;
+        this.userId = userId;
         this.fullName = fullName;
         this.email = email;
-        this.phone = phone;
         this.profilePictureUrl = profilePictureUrl;
     }
 
     // Getters
+    public String getMessage() {
+        return message;
+    }
 
-    public Integer getId() {
-        return id;
+    public Integer getUserId() {
+        return userId;
     }
 
     public String getFullName() {
@@ -41,18 +44,17 @@ public class ConnectedUsersResponse {
         return email;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
     public String getProfilePictureUrl() {
         return profilePictureUrl;
     }
 
     // Setters
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public void setFullName(String fullName) {
@@ -61,10 +63,6 @@ public class ConnectedUsersResponse {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public void setProfilePictureUrl(String profilePictureUrl) {

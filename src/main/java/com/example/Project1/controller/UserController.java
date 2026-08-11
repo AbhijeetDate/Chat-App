@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.Project1.dto.ChangePasswordRequest;
 import com.example.Project1.dto.ForgotPasswordRequest;
 import com.example.Project1.dto.LoginRequest;
+import com.example.Project1.dto.LoginResponse;
 import com.example.Project1.dto.ResetPasswordRequest;
 import com.example.Project1.dto.SearchUserRequest;
 import com.example.Project1.dto.SearchUserResponse;
@@ -34,9 +35,9 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody LoginRequest request)
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request)
     {
-        return userService.login(request);
+        return ResponseEntity.ok(userService.login(request));
     }
 
     @PutMapping("/change-password")
