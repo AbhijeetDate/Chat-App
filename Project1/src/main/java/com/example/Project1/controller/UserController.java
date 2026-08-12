@@ -2,7 +2,6 @@ package com.example.Project1.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +21,6 @@ import com.example.Project1.service.UserService;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "*")
 public class UserController {
 
     @Autowired

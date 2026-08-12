@@ -3,7 +3,6 @@ package com.example.Project1.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,14 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Project1.dto.AcceptConnectionRequest;
 import com.example.Project1.dto.ConnectedUsersResponse;
-import com.example.Project1.dto.PendingConnectionResponse   ;
-import com.example.Project1.dto.SendConnectionRequest;
+import com.example.Project1.dto.PendingConnectionResponse;
+import com.example.Project1.dto.SendConnectionRequest   ;
 import com.example.Project1.service.ConnectionService;
 
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "*")
 public class ConnectionRequestController {
     
     @Autowired
