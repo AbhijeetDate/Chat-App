@@ -12,7 +12,14 @@ public class CorsConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins(
                         "http://localhost:5500",
-                        "http://127.0.0.1:5501"
+                        "http://127.0.0.1:5501",
+
+                        // Vercel production domain
+                        "https://chat-app-frontend-chi-nine.vercel.app",
+
+                        // Vercel deployment domains
+                        "https://chat-app-frontend-git-main-abhijeetdate7-gmailcoms-projects.vercel.app",
+                        "https://chat-app-frontend-bo4kwyqlg-abhijeetdate7-gmailcoms-projects.vercel.app"
                 )
                 .allowedMethods(
                         "GET",
