@@ -1,68 +1,136 @@
-HELP.md
-
-### Maven ###
+# ================================
+# Maven
+# ================================
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-### Spring Tool Suite (STS) ###
-.apt_generated
+# Maven Wrapper
+.mvn/wrapper/maven-wrapper.properties
+
+
+# ================================
+# Spring Tool Suite (STS)
+# ================================
+.apt_generated/
 .classpath
 .factorypath
 .project
-.settings
+.settings/
 .springBeans
-.sts4-cache
+.sts4-cache/
 
-### IntelliJ IDEA ###
+
+# ================================
+# IntelliJ IDEA
+# ================================
 .idea/
 *.iws
 *.iml
 *.ipr
 
-### NetBeans ###
+
+# ================================
+# NetBeans
+# ================================
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
+
+
+# ================================
+# VS Code
+# ================================
+.vscode/
+
+
+# ================================
+# Eclipse
+# ================================
+.metadata/
+
+
+# ================================
+# Build directories
+# ================================
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### VS Code ###
-.vscode/
 
-### Eclipse ###
-.metadata/
-
-### Logs ###
+# ================================
+# Logs
+# ================================
 *.log
+logs/
 
-### OS Generated Files ###
-.DS_Store
-Thumbs.db
 
-### Environment Files ###
+# ================================
+# Environment / Secrets
+# ================================
 .env
+.env.*
+!.env.example
 
-### Packaged Files ###
+
+# ================================
+# Packaged files
+# ================================
 *.jar
 *.war
 *.ear
 
-### Temporary Files ###
+
+# ================================
+# Temporary files
+# ================================
 *.tmp
+*.temp
 *.swp
 *.swo
+*.bak
 
-### Mac ###
+
+# ================================
+# OS generated files
+# ================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+
+# ================================
+# Mac
+# ================================
 .AppleDouble
 .LSOverride
 
-### Linux ###
+
+# ================================
+# Linux
+# ================================
 *~
 
-### Java ###
+
+# ================================
+# Java
+# ================================
 *.class
+hs_err_pid*
+replay_pid*
+
+
+# ================================
+# Spring Boot
+# ================================
+.springBeans
+
+
+# ================================
+# Coverage
+# ================================
+.coverage/
+*.exec
