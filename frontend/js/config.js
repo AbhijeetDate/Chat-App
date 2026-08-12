@@ -9,7 +9,7 @@
  * Do NOT add a trailing slash.
  * ============================================================
  */
-const API_BASE_URL = "http://localhost:8080";
+const API_BASE_URL = "https://chat-app-java-backend.onrender.com";
 
 // WebSocket URL is derived automatically from API_BASE_URL
 // (http -> ws, https -> wss). Used later for real-time chat.
