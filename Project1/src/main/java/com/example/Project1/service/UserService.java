@@ -21,6 +21,7 @@ import com.example.Project1.dto.signUpRequest;
 import com.example.Project1.entity.User;
 import com.example.Project1.repository.ConnectionRepository;
 import com.example.Project1.repository.UserRepository;
+import com.example.Project1.util.PasswordUtil;
 
 @Service
 public class UserService {
@@ -31,6 +32,8 @@ public class UserService {
     private EmailService emailService;
     @Autowired
     private ConnectionRepository connectionRepository;
+    @Autowired
+    private PasswordUtil passwordUtil;
 
     @Value("${app.default-profile-url}")
     private String defaultProfileUrl;
@@ -59,7 +62,7 @@ public class UserService {
         user.setFullName(request.getFullName());
         user.setEmail(request.getEmail());
         user.setPhone(request.getPhone());
-        user.setPassword(request.getPassword());
+        user.setPassword(passwordUtil.encode(request.getPassword()));
         user.setProfilePictureUrl(defaultProfileUrl);
 
         // Save in database
@@ -86,7 +89,7 @@ public class UserService {
 
         User user = optionalUser.get();
 
-        if(!user.getPassword().equals(request.getPassword()))
+        if(!passwordUtil.matches(request.getPassword(), user.getPassword()))
         {
             return new LoginResponse(
                 "Invalid credentials.",
@@ -117,12 +120,12 @@ public class UserService {
 
         User user = optionalUser.get();
 
-        if(!user.getPassword().equals(request.getOldPassword()))
+        if(!passwordUtil.matches(request.getOldPassword(), user.getPassword()))
         {
             return "Old password is incorrect.";
         }
         
-        if(user.getPassword().equals(request.getNewPassword()))
+        if(passwordUtil.matches(request.getNewPassword(), user.getPassword()))
         {
             return "New password cannot be the same as the old password.";
         }
@@ -132,7 +135,7 @@ public class UserService {
             return "New password and confirm password do not match.";
         }
 
-        user.setPassword(request.getNewPassword());
+        user.setPassword(passwordUtil.encode(request.getNewPassword()));
         userRepository.save(user);
         
         return "Password changed successfully.";
@@ -205,7 +208,7 @@ public class UserService {
 
         User user = optionalUser.get();
 
-        user.setPassword(request.getNewPassword());
+        user.setPassword(passwordUtil.encode(request.getNewPassword()));
         userRepository.save(user);
 
         otpStorage.remove(request.getEmail());

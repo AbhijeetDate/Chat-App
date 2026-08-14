@@ -43,6 +43,7 @@ public class ConnectionService {
         connectionRequest.setSenderId(request.getSenderId());
         connectionRequest.setReceiverId(request.getReceiverId());
         connectionRequest.setStatus("PENDING");
+        //connectionRequest.setCreatedAt(LocalDateTime.now());
         connectionRequestRepository.save(connectionRequest);
 
         return "Connection request sent.";
