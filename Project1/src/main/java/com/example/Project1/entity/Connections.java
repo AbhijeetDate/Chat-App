@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,6 +26,12 @@ public class Connections {
 
     @Column(name = "connected_at")
     private Timestamp connectedAt;
+
+    @PrePersist
+    protected void onCreate() 
+    {
+        connectedAt = new Timestamp(System.currentTimeMillis());
+    }
 
     public Connections() {}
 
